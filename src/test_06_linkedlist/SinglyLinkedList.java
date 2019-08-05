@@ -140,6 +140,27 @@ public class SinglyLinkedList {
 
     }
 
+    //判断两条链表是否相同
+    // true or false
+    //第一条假设为left，第二条假设为right
+    public boolean tfResult(Node left,Node right){
+        Node l=left;
+        Node r =right;
+        while(l!=null&&r!=null){
+            if(left.data==right.data){
+                l=l.next;
+                r=r.next;
+                continue;
+            }else{
+                break;
+            }
+        }
+        if(l==null&&r==null){
+            return true;
+        }
+        return false;
+    }
+
 
    public void printAll() {
         Node p = head;
@@ -177,6 +198,15 @@ public class SinglyLinkedList {
         link.printAll();
         link.insertAfterByNode(link.findByValue(2),4);
         link.printAll();
+        link.insertBeforeByNode(link.findByValue(2),33);
+        link.printAll();
+        link.deleteByValue(2);
+        link.printAll();
+
+        boolean a = link.tfResult(link.findByValue(2), link.findByValue(2));
+        System.out.println(a);
+        boolean b = link.tfResult(link.findByValue(2), link.findByValue(3));
+        System.out.println(b);
         // Node p = link.inverseLinkList_head(link.head);
         // while(p != null){
         //     System.out.println("aa"+p.data);
