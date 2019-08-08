@@ -18,6 +18,7 @@ public class SinglyLinkedList {
             this.data = data;
         }
 
+
         @Override
         public String toString() {
             return "Node:" + data;
