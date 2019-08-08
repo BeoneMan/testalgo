@@ -1,9 +1,5 @@
 package test_07_linkedList;
 
-import test_06_linkedlist.SinglyLinkedList;
-
-import java.util.LinkedList;
-
 /**
  * 1) 单链表反转
  * 2) 链表中环的检测
@@ -50,7 +46,32 @@ public class LinkedListAlgo {
     public static Node mergeSortedLists(Node node1,Node node2){
         Node a=node1;
         Node b=node2;
-        Node head =new Node(null,null);
+        Node head =null;
+        if(a.getData()<b.getData()){
+            head=a;
+            a=a.next;
+        }else{
+            head=b;
+            b=b.next;
+        }
+        Node p=head;
+        while(a!=null&&b!=null){
+            if(a.getData()<b.getData()){
+                p.next=a;
+                a=a.next;
+
+            }else{
+                p.next=b;
+                b=b.next;
+
+            }
+            p=p.next;
+        }
+        if(a!=null){
+            p.next=a;
+        }else{
+            p.next=b;
+        }
         return head;
 
     }
@@ -58,17 +79,12 @@ public class LinkedListAlgo {
     public static class Node {
         private Integer data;
         private Node next;
-        private int lenght;
 
         public Node(Integer data, Node next) {
             this.data = data;
             this.next = next;
-            lenght++;
         }
 
-        public int getLenght() {
-            return lenght;
-        }
 
         public Integer  getData() {
             return data;
@@ -103,7 +119,7 @@ public class LinkedListAlgo {
 
         //3) 两个有序的链表合并
         Node node1 = new Node(1, new Node(6, new Node(11, new Node(19, null))));
-        Node node2 = new Node(2, new Node(3, new Node(8, new Node(20, null))));
+        Node node2 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25,new Node(30,null))))));
         Node node = mergeSortedLists(node1, node2);
         printAll(node);
 
