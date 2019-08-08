@@ -43,37 +43,49 @@ public class LinkedListAlgo {
     }
 
     //3) 两个有序的链表合并
-    public static Node mergeSortedLists(Node node1,Node node2){
-        Node a=node1;
-        Node b=node2;
-        Node head =null;
-        if(a.getData()<b.getData()){
-            head=a;
-            a=a.next;
-        }else{
-            head=b;
-            b=b.next;
+    public static Node mergeSortedLists(Node node1, Node node2) {
+        Node a = node1;
+        Node b = node2;
+        Node head = null;
+        if (a.getData() < b.getData()) {
+            head = a;
+            a = a.next;
+        } else {
+            head = b;
+            b = b.next;
         }
-        Node p=head;
-        while(a!=null&&b!=null){
-            if(a.getData()<b.getData()){
-                p.next=a;
-                a=a.next;
+        Node p = head;
+        while (a != null && b != null) {
+            if (a.getData() < b.getData()) {
+                p.next = a;
+                a = a.next;
 
-            }else{
-                p.next=b;
-                b=b.next;
+            } else {
+                p.next = b;
+                b = b.next;
 
             }
-            p=p.next;
+            p = p.next;
         }
-        if(a!=null){
-            p.next=a;
-        }else{
-            p.next=b;
+        if (a != null) {
+            p.next = a;
+        } else {
+            p.next = b;
         }
         return head;
 
+    }
+
+    //5) 求链表的中间结点
+    public static Node findMiddleNode(Node list) {
+        if(list==null)return null;
+        Node fast=list;
+        Node slow=list;
+        while(fast.next!=null&&fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
 
     public static class Node {
@@ -86,7 +98,7 @@ public class LinkedListAlgo {
         }
 
 
-        public Integer  getData() {
+        public Integer getData() {
             return data;
         }
     }
@@ -118,10 +130,14 @@ public class LinkedListAlgo {
         }*/
 
         //3) 两个有序的链表合并
-        Node node1 = new Node(1, new Node(6, new Node(11, new Node(19, null))));
-        Node node2 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25,new Node(30,null))))));
+       /* Node node1 = new Node(1, new Node(6, new Node(11, new Node(19, null))));
+        Node node2 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25, new Node(30, null))))));
         Node node = mergeSortedLists(node1, node2);
-        printAll(node);
+        printAll(node);*/
 
+       //求链表的中间结点
+        Node node3 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25, new Node(30, null))))));
+        Node middleNode = findMiddleNode(node3);
+        System.out.println(middleNode.data);
     }
 }
