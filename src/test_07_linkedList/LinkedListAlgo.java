@@ -76,14 +76,39 @@ public class LinkedListAlgo {
 
     }
 
+    //4) 删除链表倒数第n个结点
+    public static Node deleteLastKth(Node list, int k) {
+        Node head = list;
+        if (list == null) return null;
+        Node fast = list;
+        Node slow = list;
+        Node pre = null;
+        int i = 1;
+        for (int j = i; j < k; j++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            fast = fast.next;
+            pre = slow;
+            slow = slow.next;
+        }
+        //不明白pre==null的用意
+        if(pre==null){
+            list=list.next;
+        }else{
+            pre.next=pre.next.next;
+        }
+        return head;
+    }
+
     //5) 求链表的中间结点
     public static Node findMiddleNode(Node list) {
-        if(list==null)return null;
-        Node fast=list;
-        Node slow=list;
-        while(fast.next!=null&&fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
+        if (list == null) return null;
+        Node fast = list;
+        Node slow = list;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return slow;
     }
@@ -135,9 +160,18 @@ public class LinkedListAlgo {
         Node node = mergeSortedLists(node1, node2);
         printAll(node);*/
 
-       //求链表的中间结点
-        Node node3 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25, new Node(30, null))))));
+        //4) 删除链表倒数第n个结点
+        Node node3 = new Node(1, new Node(6, new Node(11, new Node(19, null))));
+        printAll(node3);
+        deleteLastKth(node3,1);
+        printAll(node3);
+
+        //5)求链表的中间结点
+       /* Node node4 = new Node(2, new Node(3, new Node(8, new Node(20, new Node(25, new Node(30, null))))));
         Node middleNode = findMiddleNode(node3);
-        System.out.println(middleNode.data);
+        System.out.println(middleNode.data);*/
+
+
+
     }
 }
