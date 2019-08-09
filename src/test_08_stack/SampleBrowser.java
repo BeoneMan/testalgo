@@ -1,5 +1,7 @@
 package test_08_stack;
 
+import java.time.temporal.ChronoUnit;
+
 /**
  * 使用前后栈实现浏览器的前进后退。
  *
@@ -9,6 +11,44 @@ public class SampleBrowser {
     private String currentPage;
     private LinkedListBasedStack forwardStack;
     private LinkedListBasedStack backStack;
+
+    //无参构造
+    public SampleBrowser(){
+        this.forwardStack=new LinkedListBasedStack();
+        this.backStack=new LinkedListBasedStack();
+        this.currentPage=null;
+    }
+    //查询当前页面
+    public String checkCurrentPage(){
+        return this.currentPage;
+    }
+
+    //能否前进
+    public Boolean IsCanForward(){
+        return forwardStack.getSize()>0;
+    }
+    //能否后退
+    public Boolean IsCanBack(){
+        return backStack.getSize()>0;
+    }
+    //打开新页面
+    public void open(String url){
+        if(currentPage!=null){
+            this.backStack.push(url);
+            this.forwardStack.clear();
+        }
+        showUrl(url,"open");
+
+    }
+
+    private void showUrl(String url, String prefix) {
+        this.currentPage=url;
+        System.out.println("prefix:"+prefix+"  +url:"+url);
+    }
+
+    //前进
+
+    //后退
 
 
 
