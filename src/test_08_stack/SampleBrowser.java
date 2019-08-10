@@ -34,7 +34,7 @@ public class SampleBrowser {
     //打开新页面
     public void open(String url){
         if(currentPage!=null){
-            this.backStack.push(url);
+            this.backStack.push(this.currentPage);
             this.forwardStack.clear();
         }
         showUrl(url,"open");
@@ -47,9 +47,29 @@ public class SampleBrowser {
     }
 
     //前进
+    public String goForward(){
+        if(IsCanForward()){
+            this.backStack.push(this.currentPage);
+            String url = this.forwardStack.pop();
+            showUrl(url,"goForward");
+            return url;
+        }
+        System.out.println("** Cannot go forward, no pages ahead.");
+        return null;
+
+    }
 
     //后退
-
+    public String goBack(){
+        if(IsCanBack()){
+            this.forwardStack.push(this.currentPage);
+            String url = this.backStack.pop();
+            showUrl(url,"goBack");
+            return url;
+        }
+        System.out.println("* Cannot go back, no pages behind.");
+        return null;
+    }
 
 
 
@@ -138,6 +158,26 @@ public class SampleBrowser {
             System.out.println();
         }
 
+    }
+
+
+    public static void main(String[] args) {
+        SampleBrowser browser = new SampleBrowser();
+        browser.open("http://www.baidu.com");
+        browser.open("http://news.baidu.com/");
+        browser.open("http://news.baidu.com/ent");
+        browser.goBack();
+        browser.goBack();
+        browser.goForward();
+        browser.open("http://www.qq.com");
+        browser.goForward();
+        browser.goBack();
+        browser.goForward();
+        browser.goBack();
+        browser.goBack();
+        browser.goBack();
+        browser.goBack();
+        browser.checkCurrentPage();
     }
 
 
