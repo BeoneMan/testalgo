@@ -1,12 +1,12 @@
 package test_08_stack;
 
-import java.time.temporal.ChronoUnit;
 
 /**
  * 使用前后栈实现浏览器的前进后退。
  *
  * @author DriveMan
  */
+@SuppressWarnings("All")
 public class SampleBrowser {
     private String currentPage;
     private LinkedListBasedStack forwardStack;

@@ -4,6 +4,7 @@ package test_08_stack;
  *
  * Author: DriveMan
  */
+@SuppressWarnings("all")
 public class StackBaseOnLinkedList {
     private Node top;
     //进栈
