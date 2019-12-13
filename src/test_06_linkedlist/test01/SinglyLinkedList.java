@@ -68,12 +68,30 @@ public class SinglyLinkedList {
     //在哪个节点前插入
     public void insertBefore(Node node ,int value){
         if(head==null||node==null)return;
+        if(node==head)insertHead(node);
         Node newNode=new Node(value,null);
-        
+        Node p =head;
+        while(p!=null&&p.next!=node){
+            p=p.next;
+        }
+        if(p==null)return;
+        newNode.next=node;
+        p.next=newNode;
     }
 
     //在哪个节点后插入
+public void insertAfter(Node node,int value){
+        if(head==null||node==null)return;
+        Node p =head;
+        Node newNode=new Node(value,null);
+        while(p!=null&&p.next!=node){
+            p=p.next;
+        }
+        if(p==null)return;
+        newNode.next=p.next.next;
+        p.next.next=newNode;
 
+}
     //通过value删除Node节点
     //通过index删除Node节点
 
