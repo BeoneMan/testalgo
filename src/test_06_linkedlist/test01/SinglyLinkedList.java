@@ -110,6 +110,7 @@ public class SinglyLinkedList {
             pre = pre.next;
         }
         pre.next = deleNode.next;
+        deleNode=null;
     }
 
     //通过index删除Node节点
