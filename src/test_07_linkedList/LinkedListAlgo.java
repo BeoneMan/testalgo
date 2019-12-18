@@ -9,7 +9,8 @@ package test_07_linkedList;
  * <p>
  * Author: DriveMan
  */
-public class LinkedListAlgo {
+public class
+LinkedListAlgo {
     //1) 单链表反转
     public static Node reverse(Node list) {
         Node p1 = list;
