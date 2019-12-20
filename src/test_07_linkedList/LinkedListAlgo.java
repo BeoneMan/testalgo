@@ -93,7 +93,7 @@ LinkedListAlgo {
             pre = slow;
             slow = slow.next;
         }
-        //不明白pre==null的用意
+        //删除开头第一个节点
         if(pre==null){
             list=list.next;
         }else{
